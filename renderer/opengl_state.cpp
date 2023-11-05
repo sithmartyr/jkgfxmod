@@ -156,7 +156,7 @@ jkgm::hud_model::hud_model(size<2, int> scr_res,
     };
 
     // Extract sprites from the origin HUD:
-    auto console_tc = make_box(make_point(64, 0), make_size(get<x>(int_scr_res) - 128, 64));
+    auto console_tc = make_box(make_point(64, 0), make_size(get<x>(int_scr_res) - 128, 90));
     auto tl_tc = make_box(make_point(0, 0), make_size(64, 64));
     auto tr_tc = make_box(make_point(get<x>(int_scr_res) - 64, 0), make_size(64, 64));
 
@@ -167,13 +167,13 @@ jkgm::hud_model::hud_model(size<2, int> scr_res,
     auto select_tc = make_box(make_point(64, get<y>(int_scr_res) - 64),
                               make_size(get<x>(int_scr_res) - 128, 64));
 
-    auto rest_tc =
-        make_box(make_point(0, 64), make_size(get<x>(int_scr_res), get<y>(int_scr_res) - 128));
+    //auto rest_tc =
+    //    make_box(make_point(0, 64), make_size(get<x>(int_scr_res), get<y>(int_scr_res) - 128));
+    auto rest_tc = make_box(make_point(64, 0), make_size(get<x>(int_scr_res) - 128, 300));
 
     // Add sprites to the output HUD. Output coordinates are relative to the virtual screen:
-    add_sprite(make_box(make_point(0.0f, 64.0f),
-                        make_size(get<x>(int_scr_res_f), get<y>(int_scr_res_f) - 128.0f)),
-               rest_tc);
+    //add_sprite(make_box(make_point(0.0f, 64.0f), make_size(get<x>(int_scr_res_f), get<y>(int_scr_res_f) - 128.0f)), rest_tc);
+    
 
     auto sel_sz = make_size(get<x>(int_scr_res_f) - 128.0f, 64.0f) * scale;
     auto sel_off = (get<x>(int_scr_res_f) - get<x>(sel_sz)) * 0.5f;
@@ -181,12 +181,18 @@ jkgm::hud_model::hud_model(size<2, int> scr_res,
 
     auto con_sz = make_size(get<x>(int_scr_res_f), 64.0f) * scale;
     auto con_off = (get<x>(int_scr_res_f) - get<x>(con_sz)) * 0.5f;
-    add_sprite(make_box(make_point(con_off, get<y>(int_scr_res_f) - get<y>(con_sz)), con_sz),
-               console_tc);
+
+    // New rest
+    //add_sprite(make_box(make_point(get<x>(int_scr_res_f) - get<x>(con_sz), con_off), con_sz), rest_tc);
+    add_sprite(make_box(make_point(0.0f, 64.0f), make_size(get<x>(int_scr_res_f), get<y>(int_scr_res_f) - 128.0f)), rest_tc);
+
+    // Console for scoreboard, chatting, and entering commands.
+    add_sprite(make_box(make_point(con_off, get<y>(int_scr_res_f) - get<y>(con_sz)), con_sz), console_tc);
 
     add_sprite(make_box(make_point(0.0f, get<y>(int_scr_res_f) - 64.0f * scale),
                         make_size(64.0f, 64.0f) * scale),
                tl_tc);
+    
     add_sprite(make_box(make_point(get<x>(int_scr_res_f) - 64.0f * scale,
                                    get<y>(int_scr_res_f) - 64.0f * scale),
                         make_size(64.0f, 64.0f) * scale),
