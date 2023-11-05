@@ -168,10 +168,16 @@ jkgm::hud_model::hud_model(size<2, int> scr_res,
                               make_size(get<x>(int_scr_res) - 128, 64));
 
     auto rest_tc =
-        make_box(make_point(0, 256), make_size(get<x>(int_scr_res), get<y>(int_scr_res) - 128));
+        make_box(make_point(0, 128), make_size(get<x>(int_scr_res), get<y>(int_scr_res) - 128));
+
+    //TESTING: console_tc_test
+    //auto console_tc_test = make_box(make_point(0, 0), make_size(get<x>(int_scr_res), get<y>(int_scr_res)));
 
     // Add sprites to the output HUD. Output coordinates are relative to the virtual screen:
-    add_sprite(make_box(make_point(0.0f, -128.0f), make_size(get<x>(int_scr_res_f), get<y>(int_scr_res_f) - 128.0f)), rest_tc);
+    add_sprite(make_box(make_point(0.0f, 0.0f), make_size(get<x>(int_scr_res_f), get<y>(int_scr_res_f) - 128.0f)), rest_tc);
+
+    //TESTING: console_tc_test
+    //add_sprite(make_box(make_point(0.0f, -128.0f),make_size(get<x>(int_scr_res_f), get<y>(int_scr_res_f) - 128.0f)), console_tc_test);
     
 
     auto sel_sz = make_size(get<x>(int_scr_res_f) - 128.0f, 64.0f) * scale;
