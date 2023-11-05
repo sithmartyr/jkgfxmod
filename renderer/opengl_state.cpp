@@ -168,10 +168,10 @@ jkgm::hud_model::hud_model(size<2, int> scr_res,
                               make_size(get<x>(int_scr_res) - 128, 64));
 
     auto rest_tc =
-        make_box(make_point(0, 64), make_size(get<x>(int_scr_res), get<y>(int_scr_res) - 128));
+        make_box(make_point(0, 256), make_size(get<x>(int_scr_res), get<y>(int_scr_res) - 128));
 
     // Add sprites to the output HUD. Output coordinates are relative to the virtual screen:
-    add_sprite(make_box(make_point(0.0f, 64.0f), make_size(get<x>(int_scr_res_f), get<y>(int_scr_res_f) - 128.0f)), rest_tc);
+    add_sprite(make_box(make_point(0.0f, -128.0f), make_size(get<x>(int_scr_res_f), get<y>(int_scr_res_f) - 128.0f)), rest_tc);
     
 
     auto sel_sz = make_size(get<x>(int_scr_res_f) - 128.0f, 64.0f) * scale;
@@ -181,7 +181,6 @@ jkgm::hud_model::hud_model(size<2, int> scr_res,
     auto con_sz = make_size(get<x>(int_scr_res_f), 64.0f) * scale;
     auto con_off = (get<x>(int_scr_res_f) - get<x>(con_sz)) * 0.5f;
 
-    // New rest
     // Console for scoreboard, chatting, and entering commands.
     // The add_sprite changes location on screen.
     //  The first argument of make_box that uses make_point in the argument actually controls how much of the part of the
